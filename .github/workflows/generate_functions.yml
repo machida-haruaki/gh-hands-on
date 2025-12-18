@@ -1,0 +1,10 @@
+name: Generate functions
+on: push
+jobs:
+    generate:
+        runs-on: ubuntu-latest
+        steps:
+            - run: printenv | grep '_FUNC'
+              env:
+                FORMAT_FUNC: ${{ format('{0}, {1}.', 'Hi', 'world') }} # 第一引数の文字列を、第二引数以降の文字列でフォーマットする
+                JOIN_FUNC: ${{ join(github.event.*.html_url, ', ') }}  # 第一引数の配列を、第二引数の文字列で結合する、なお、github.event.*.html_urlの*はオブジェクトフィルターだお
